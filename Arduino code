@@ -1,0 +1,51 @@
+          //Home security alarm sysytem using arduino Uno board
+          
+      
+int LED1=12;                                  // led 1 red                
+int GND1=13;                                  // gnd red led
+int LED2=7;                                   // led 2 green
+int GND2=8;                                   // gnd green led
+int pirOutput=6;                              // pir output pwm~6
+int buzzer=3;                                 // buzzer pwm~3
+
+void setup()
+{
+ Serial.begin(9600);                          // serial monitor at 9600 baud rate
+ pinMode(LED1,OUTPUT);
+ pinMode(GND1,OUTPUT);
+ pinMode(LED2,OUTPUT);
+ pinMode(GND2,OUTPUT);
+ pinMode(pirOutput,INPUT);                    // output of pir is input to arduino
+ pinMode(buzzer,OUTPUT);
+ 
+ digitalWrite(pirOutput,LOW);
+ digitalWrite(GND1,LOW);
+ digitalWrite(GND2,LOW);
+ digitalWrite(LED1,LOW);
+ digitalWrite(LED2,LOW);
+ delay(10000);                           	    // delay of 10000ms (10s)
+ digitalWrite(LED1,HIGH);                     // red led is high          
+}
+
+
+
+
+
+void loop()
+{
+if(digitalRead(pirOutput)==HIGH)
+  {
+  digitalWrite(LED2,HIGH);                      // green led is high (motion)
+  delay(1000);                                  // delay of 1000ms
+  playTone(1500,100);                           // (dura,freq)
+  delay(100);
+  Serial.println("Motion Detected");
+  Serial.println("ATD+91xxxxxxxxxx;");  	      // mobile no.
+  delay(10000);                         			  // delay of 10000ms
+  Serial.println("ATH");                        // after a delay of 5 secs hangup call
+  digitalWrite(LED2,LOW);                       // green led is low (no motion)
+  delay(1000);                          	      // delay of 1000ms
+  playTone(0,0);
+  delay(100);
+  }
+}
