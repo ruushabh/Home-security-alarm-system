@@ -23,7 +23,7 @@ void setup()
  digitalWrite(GND2,LOW);
  digitalWrite(LED1,LOW);
  digitalWrite(LED2,LOW);
- delay(10000);                           	    // delay of 10000ms (10s)
+ delay(10000);                                // delay of 10000ms (10s)
  digitalWrite(LED1,HIGH);                     // red led is high          
 }
 
@@ -40,11 +40,11 @@ if(digitalRead(pirOutput)==HIGH)
   playTone(1500,100);                           // (dura,freq)
   delay(100);
   Serial.println("Motion Detected");
-  Serial.println("ATD+91xxxxxxxxxx;");  	      // mobile no.
-  delay(10000);                         			  // delay of 10000ms
+  Serial.println("ATD+91xxxxxxxxxx;");          // mobile no.
+  delay(10000);                                 // delay of 10000ms
   Serial.println("ATH");                        // after a delay of 5 secs hangup call
   digitalWrite(LED2,LOW);                       // green led is low (no motion)
-  delay(1000);                          	      // delay of 1000ms
+  delay(1000);                                  // delay of 1000ms
   playTone(0,0);
   delay(100);
   }
